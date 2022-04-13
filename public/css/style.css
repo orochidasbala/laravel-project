@@ -1,0 +1,44 @@
+body {
+    font-family: monospace;
+    background-color: goldenrod;
+    max-width: 700px;
+    margin: auto;
+    text-align: justify;
+}
+
+a {
+    text-decoration: none;
+    color: purple;
+}
+
+
+/* 
+.homeBot {
+    background-color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+} */
+
+.bg-grey {
+    text-align: justify;
+}
+
+.right_side {
+    text-align: justify;
+}
+
+.foot_style {
+    background-color: white;
+    color: grey;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-family: monospace;
+}
+
+h1 {
+    text-align: right;
+}
