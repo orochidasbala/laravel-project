@@ -10,5 +10,5 @@
     <p>
         {{$blog->body}}
     </p>
-    <a href="/">Go to first page</a>
+    <x-homepage/>
 </x-layout>

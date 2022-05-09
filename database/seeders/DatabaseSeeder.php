@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Blog;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,6 +17,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::truncate();
+        Category::truncate();
+        Blog::truncate();
+
+        $frontend = Category::factory()->create(['name' => 'frontend']);
+        $backend = Category::factory()->create(['name' => 'backend']);
+
+        Blog::factory(3)->create(['category_id' => $frontend->id]);
+        Blog::factory(3)->create(['category_id' => $backend->id]);
     }
 }

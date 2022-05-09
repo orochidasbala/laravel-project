@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Blog;
+use App\Models\Category;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,13 +19,28 @@ use App\Models\Blog;
 */
 
 Route::get('/', function () {
+    // DB::listen(function ($query) {
+    //     logger($query->sql);    //Log::info() == loger();
+    // });
     return view('blogs', [
-        'blogs' => Blog::all()
+        'blogs' => Blog::latest()->get() //all() //with('category', 'author')->get() //eager load or lazy loading
+    ]);
+}); 
+
+Route::get('/blogs/{blog:slug}', function (Blog $blog) {
+    return view('blog', [
+        'blog' => $blog
+    ]);
+})->where('blog', '[A-z\d\-_]+');
+
+Route::get('/categories/{category:slug}', function (Category $category) {
+    return view('blogs', [
+        'blogs' => $category->blogs //->load('author', 'category')
     ]);
 });
 
-Route::get('blogs/{blog}', function ($slug) {
-    return view('blog', [
-        'blog' => Blog::findOrFail($slug)
+Route::get('/user/{user:username}', function(User $user){
+    return view('blogs', [
+        'blogs'=> $user->blogs //->load('author', 'category')
     ]);
-})->where('blog', '[A-z\d\-_]+');
+});
