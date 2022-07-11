@@ -7,9 +7,10 @@
                     class="card-img-top" alt="..." />
                 <h3 class="my-3">{{ $blog->title }}</h3>
                 <div>
-                    <div>Author - <a href="/user/{{$blog->author->username}}">{{$blog->author->name}}</a></div>
-                    <div><a href="/categories/{{$blog->category->slug}}"><span class="badge bg-primary">{{$blog->category->name}}</span></a></div>
-                    <div class="text-secondary">public at - {{$blog->created_at->diffForHumans()}}</div>
+                    <div>Author - <a href="/?user={{ $blog->author->username }}">{{ $blog->author->name }}</a></div>
+                    <div><a href="/?categories={{ $blog->category->slug }}"><span
+                                class="badge bg-primary">{{ $blog->category->name }}</span></a></div>
+                    <div class="text-secondary">public at - {{ $blog->created_at->diffForHumans() }}</div>
                 </div>
                 <p class="lh-md mt-3">
                     {{ $blog->body }}
@@ -17,9 +18,9 @@
             </div>
         </div>
     </div>
-
+    <x-comments :comments="$blog->comments"/>
     <!-- subscribe new blogs -->
-    <x-subscribe-section/>
-    <x-blog-yml :randomBlogs="$randomBlogs"/>
+    <x-subscribe-section />
+    <x-blog-yml :randomBlogs="$randomBlogs" />
     <!-- footer -->
 </x-layout>
